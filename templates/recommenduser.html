@@ -15,11 +15,12 @@
         </p>
       </div>
       <br><hr><br>
+      <h3>Happy Coding!</h3>
+      <br><hr><br>
       <div class="list-group">
         {% for val in result['recommendedProblems'] %}
-          <button type="button" class="list-group-item list-group-item-action">
-          {{val}}
-          </button>
+          <a href="https://www.codechef.com/problems/{{val}}">{{val}}</a>
+          <hr>
         {% endfor %}
       </div>
     </div>

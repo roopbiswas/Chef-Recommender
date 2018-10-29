@@ -5,3 +5,14 @@
   line-height: 100px;
   height: 100px;
 }
+a {
+ 
+  z-index  : 5;
+  width    : 70%;
+  box-shadow: 0px 6px 10px black;
+  transform: rotate(4deg);
+  font-size: 20px;
+  background: -webkit-linear-gradient(#000080, #000080);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
