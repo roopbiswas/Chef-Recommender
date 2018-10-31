@@ -10,7 +10,10 @@ def init():
 
 @app.route("/",methods=['POST'])
 def requestResult():
-    return redirect(url_for('recommenderApi',username=request.form['username']))
+    if 'userApi' in request.form:
+        return redirect(url_for('recommenderApi',username=request.form['username']))
+    elif 'probApi' in request.form:
+        return redirect(url_for('problemRecommenderApi',code=request.form['codename']))
 
 @app.route("/api/recommend/problem/<string:code>", methods=['GET'])
 def problemRecommenderApi(code):
@@ -21,7 +24,9 @@ def problemRecommenderApi(code):
     for key, value in res.items():
         recommended_problem.append(value)
 
-    return jsonify({"recommendedProblems": recommended_problem}), 201
+    result = {"recommendedProblems": recommended_problem}
+    
+    return render_template('recommenduser.html',result=result);
 
 
 @app.route("/api/recommend/user/<string:username>", methods=['GET'])
@@ -64,8 +69,8 @@ def recommenderApi(username):
     recommended_problem = list(recommended_problem)
 
     result = {"recommendedProblems": recommended_problem}
-    return make_response(jsonify(result))
-    # return render_template('recommenduser.html',result=result);
+    # return make_response(jsonify(result))
+    return render_template('recommenduser.html',result=result);
 
 
 @app.errorhandler(404)
